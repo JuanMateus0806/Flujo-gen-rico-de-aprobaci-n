@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './common/config/configuration';
 import { RequestModule } from './modules/request/request.module';
 import { RequestTypeModule } from './modules/request_type/request_type.module';
+import { PersonModule } from './modules/person/person.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { RequestTypeModule } from './modules/request_type/request_type.module';
     }),
     RequestModule,
     RequestTypeModule,
+    PersonModule,
   ],
 })
 export class AppModule {}

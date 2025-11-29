@@ -3,11 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Request as RequestEntity } from './entity/request.entity';
 import { Repository } from 'typeorm';
 import { CreateRequestDto } from './dto/create_request.dto';
-import { FormatNamesString, NormalizeString } from '../../common/utils/string.utils';
+import {
+  FormatNamesString,
+  NormalizeString,
+} from '../../common/utils/string.utils';
 import { Request_history } from './entity/request_history.entity';
 import { Request_status } from './enum/request_status.enum';
 import { UpdateRequestDto } from './dto/update_request.dto';
-import { GetRequestDto } from './dto/get_request.dto';
+import { GetRequestDto, GetRequestDtoFront } from './dto/get_request.dto';
 
 @Injectable()
 export class RequestService {
@@ -22,8 +25,12 @@ export class RequestService {
     const request = this.requestRepository.create({
       title: NormalizeString(create_requestDto.title),
       description: NormalizeString(create_requestDto.description),
-      applicant: create_requestDto.applicant,
-      approver: create_requestDto.approver,
+      applicant: {
+        id: create_requestDto.applicant,
+      },
+      approver: {
+        id: create_requestDto.approver,
+      },
       create_at: new Date(),
       type: {
         id: create_requestDto.type,
@@ -59,23 +66,40 @@ export class RequestService {
     }
   }
 
-  async getAll(): Promise<GetRequestDto[]> {
+  async getAll(id: string, dto: GetRequestDtoFront): Promise<GetRequestDto[]> {
     const requests: RequestEntity[] = await this.requestRepository.find({
-      relations: ['type', 'history'],
+      relations: ['type', 'history', 'applicant', 'approver'],
     });
-    return requests.map((r) => {
-      const dto = new GetRequestDto();
+    switch (dto.role) {
+      case 'ADMINISTRADOR':
+        return this.mapToDto(requests);
+      case 'SOLICITANTE':
+        return this.mapToDto(requests.filter((r) => r.applicant.id === id));
+      case 'APROBADOR':
+        return this.mapToDto(requests.filter((r) => r.approver.id === id));
+      default:
+        return [];
+    }
+  }
+
+  private mapToDto(requests: RequestEntity[]): GetRequestDto[] {
+    const result: GetRequestDto[] = [];
+
+    for (const r of requests) {
       for (const history of r.history) {
+        const dto = new GetRequestDto();
         dto.id = r.id;
         dto.title = FormatNamesString(r.title);
         dto.description = FormatNamesString(r.description);
-        dto.applicant = r.applicant;
+        dto.applicant = `${FormatNamesString(r.applicant.name)} ${FormatNamesString(r.applicant.last_name)}`;
+        dto.approver = `${FormatNamesString(r.approver.name)} ${FormatNamesString(r.approver.last_name)}`;
         dto.update_at = history.update_at;
-        dto.approver = r.approver;
         dto.status = FormatNamesString(history.state);
-        dto.comment = FormatNamesString(history.comment);
+        dto.comment = history.comment ? FormatNamesString(history.comment) : '';
+
+        result.push(dto);
       }
-      return dto;
-    });
+    }
+    return result;
   }
 }

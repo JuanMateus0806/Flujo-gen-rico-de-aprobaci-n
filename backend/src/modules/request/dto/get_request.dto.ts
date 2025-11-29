@@ -8,3 +8,7 @@ export class GetRequestDto {
   status: string;
   comment: string;
 }
+
+export class GetRequestDtoFront {
+  role: string;
+}
