@@ -1,4 +1,4 @@
 export class GetAllRequestTypeDto {
-  id: number;
+  id: string;
   name: string;
 }

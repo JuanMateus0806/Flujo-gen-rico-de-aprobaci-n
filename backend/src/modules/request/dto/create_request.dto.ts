@@ -21,5 +21,5 @@ export class CreateRequestDto {
   approver: string;
   @IsNotEmpty()
   @IsNumber()
-  type: number;
+  type: string;
 }
