@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Matches } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Matches } from 'class-validator';
 
 export class CreateRequestDto {
   @IsString()
@@ -9,6 +9,9 @@ export class CreateRequestDto {
   title: string;
   @IsString()
   @IsNotEmpty()
+  @Matches(/^[A-Za-zÁÉÍÓÚÜáéíóúüñÑ\s.,;:_-]+$/, {
+    message: 'No se permiten caracteres especiales',
+  })
   description: string;
   @IsString()
   @IsNotEmpty()
@@ -16,4 +19,7 @@ export class CreateRequestDto {
   @IsString()
   @IsNotEmpty()
   approver: string;
+  @IsNotEmpty()
+  @IsNumber()
+  type: number;
 }

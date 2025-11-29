@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import configuration from './config/configuration';
+import configuration from './common/config/configuration';
 import { RequestModule } from './modules/request/request.module';
+import { RequestTypeModule } from './modules/request_type/request_type.module';
 
 @Module({
   imports: [
-    RequestModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
@@ -21,6 +21,8 @@ import { RequestModule } from './modules/request/request.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    RequestModule,
+    RequestTypeModule,
   ],
 })
 export class AppModule {}
