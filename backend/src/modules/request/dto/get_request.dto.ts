@@ -1,8 +1,11 @@
+import { IsNotEmpty, IsString } from 'class-validator';
+
 export class GetRequestDto {
   id: string;
   title: string;
   description: string;
-  update_at: Date;
+  create_at: string;
+  update_at: string;
   applicant: string;
   approver: string;
   status: string;
@@ -10,5 +13,7 @@ export class GetRequestDto {
 }
 
 export class GetRequestDtoFront {
+  @IsString()
+  @IsNotEmpty()
   role: string;
 }

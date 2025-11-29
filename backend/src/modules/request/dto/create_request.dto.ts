@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, Matches } from 'class-validator';
+import { IsNotEmpty, IsString, Matches } from 'class-validator';
 
 export class CreateRequestDto {
   @IsString()
@@ -20,6 +20,6 @@ export class CreateRequestDto {
   @IsNotEmpty()
   approver: string;
   @IsNotEmpty()
-  @IsNumber()
+  @IsString()
   type: string;
 }

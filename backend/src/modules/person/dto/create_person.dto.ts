@@ -6,7 +6,7 @@ export class CreatePersonDto {
   name: string;
   @IsString()
   @IsNotEmpty()
-  lastname: string;
+  last_name: string;
   @IsEmail()
   @IsNotEmpty()
   email: string;

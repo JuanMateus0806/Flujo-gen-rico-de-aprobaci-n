@@ -93,7 +93,14 @@ export class RequestService {
         dto.description = FormatNamesString(r.description);
         dto.applicant = `${FormatNamesString(r.applicant.name)} ${FormatNamesString(r.applicant.last_name)}`;
         dto.approver = `${FormatNamesString(r.approver.name)} ${FormatNamesString(r.approver.last_name)}`;
-        dto.update_at = history.update_at;
+        dto.create_at = new Date(r.create_at).toLocaleString('es-PE', {
+          dateStyle: 'short',
+          timeStyle: 'short',
+        });
+        dto.update_at = new Date(history.update_at).toLocaleString('es-PE', {
+          dateStyle: 'short',
+          timeStyle: 'short',
+        });
         dto.status = FormatNamesString(history.state);
         dto.comment = history.comment ? FormatNamesString(history.comment) : '';
 

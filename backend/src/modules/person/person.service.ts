@@ -18,7 +18,7 @@ export class PersonService {
   async create(createPersonDto: CreatePersonDto) {
     const person = this.personRepository.create({
       name: NormalizeString(createPersonDto.name),
-      lastname: NormalizeString(createPersonDto.lastname),
+      last_name: NormalizeString(createPersonDto.last_name),
       email: NormalizeString(createPersonDto.email),
       role: NormalizeString(createPersonDto.role),
     });
@@ -31,7 +31,7 @@ export class PersonService {
     return people.map((person) => ({
       id: person.id,
       name: FormatNamesString(person.name),
-      lastname: FormatNamesString(person.lastname),
+      last_name: FormatNamesString(person.last_name),
       email: FormatNamesString(person.email),
       role: FormatNamesString(person.role),
     }));
