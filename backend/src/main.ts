@@ -26,6 +26,6 @@ async function bootstrap() {
     credentials: true,
     maxAge: 86400,
   });
-  await app.listen(configuration().PORT ?? 3000);
+  await app.listen(configuration().PORT ?? 3000, '0.0.0.0');
 }
 bootstrap();

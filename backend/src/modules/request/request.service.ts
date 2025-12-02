@@ -175,7 +175,7 @@ export class RequestService {
       request!.applicant.last_name,
     )}`;
     await this.nodeEmailerService.sendEmailCreate(
-      request!.applicant.email,
+      request!.approver.email,
       info,
     );
   }

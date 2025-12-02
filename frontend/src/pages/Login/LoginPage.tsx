@@ -25,7 +25,6 @@ const LoginPage = () => {
         setLoading(false);
       }
     };
-
     loadUsers();
   }, []);
 
