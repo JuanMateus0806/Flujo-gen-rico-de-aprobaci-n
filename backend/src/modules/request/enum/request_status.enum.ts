@@ -1,5 +1,5 @@
 export enum Request_status {
   PENDIENTE = 'PENDIENTE',
-  APROBADO = 'APROBADO',
-  RECHAZADO = 'RECHAZADO',
+  APROBADA = 'APROBADA',
+  RECHAZADA = 'RECHAZADA',
 }

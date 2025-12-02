@@ -1,4 +1,4 @@
-export class GetRequestDto {
+export interface RequestDto {
   id: string;
   title: string;
   description: string;
@@ -9,13 +9,22 @@ export class GetRequestDto {
   type: string;
   state: string;
   history: History[];
+  comment?: string;
   editable: boolean;
 }
 
-export class History {
+export interface History {
   id: string;
   state: string;
   created_at: string;
-  comment: string;
+  comment?: string;
   performed_by: string;
+}
+
+export interface CreateRequestDto {
+  title: string;
+  description: string;
+  applicant: string;
+  approver: string;
+  type: string;
 }

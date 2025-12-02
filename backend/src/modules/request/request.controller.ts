@@ -1,8 +1,7 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { RequestService } from './request.service';
 import { CreateRequestDto } from './dto/create_request.dto';
 import { UpdateRequestDto } from './dto/update_request.dto';
-import { GetRequestDtoFront } from './dto/get_request.dto';
 
 @Controller('request')
 export class RequestController {
@@ -19,7 +18,7 @@ export class RequestController {
   }
 
   @Get('/all/:id')
-  async getAll(@Param('id') id: string, @Body() dto: GetRequestDtoFront) {
-    return this.requestService.getAll(id, dto);
+  async getAll(@Param('id') id: string, @Query('role') role: string) {
+    return this.requestService.getAll(id, role);
   }
 }

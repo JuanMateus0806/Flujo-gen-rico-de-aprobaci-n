@@ -9,6 +9,7 @@ import {
 import { Request_type } from '../../request_type/entity/request_type.entity';
 import { Request_history } from './request_history.entity';
 import { Person } from '../../person/entity/person.entity';
+import { Request_status } from '../enum/request_status.enum';
 
 @Entity()
 export class Request {
@@ -19,7 +20,11 @@ export class Request {
   @Column()
   description: string;
   @Column()
-  create_at: Date;
+  state: Request_status;
+  @Column()
+  created_at: Date;
+  @Column()
+  updated_at: Date;
   @ManyToOne(() => Person, (p) => p.requests_applicant)
   @JoinColumn({ name: 'applicant_id' })
   applicant: Person;

@@ -30,9 +30,18 @@ export class PersonService {
     const people = await this.personRepository.find();
     return people.map((person) => ({
       id: person.id,
-      name: FormatNamesString(person.name),
-      last_name: FormatNamesString(person.last_name),
-      email: FormatNamesString(person.email),
+      full_name: `${FormatNamesString(person.name)} ${FormatNamesString(person.last_name)}`,
+      role: FormatNamesString(person.role),
+    }));
+  }
+
+  async getApprovers(): Promise<GetAllPersonDto[]> {
+    const people = await this.personRepository.find({
+      where: { role: 'APROBADOR' },
+    });
+    return people.map((person) => ({
+      id: person.id,
+      full_name: `${FormatNamesString(person.name)} ${FormatNamesString(person.last_name)}`,
       role: FormatNamesString(person.role),
     }));
   }

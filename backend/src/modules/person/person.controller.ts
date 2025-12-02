@@ -15,4 +15,9 @@ export class PersonController {
   async getAll() {
     return this.personService.getAll();
   }
+
+  @Get('/approvers')
+  async getApprovers() {
+    return this.personService.getApprovers();
+  }
 }

@@ -8,4 +8,8 @@ export default () => ({
   DB_NAME: process.env.DB_NAME,
   PORT: process.env.PORT || 3000,
   ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS,
+  EMAIL_PORT: process.env.EMAIL_PORT ? Number(process.env.EMAIL_PORT) : 465,
+  EMAIL_HOST: process.env.EMAIL_HOST,
+  EMAIL_USER: process.env.EMAIL_USER,
+  EMAIL_PASSWORD: process.env.EMAIL_PASSWORD,
 });

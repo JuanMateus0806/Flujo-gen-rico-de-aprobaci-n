@@ -5,6 +5,7 @@ import configuration from './common/config/configuration';
 import { RequestModule } from './modules/request/request.module';
 import { RequestTypeModule } from './modules/request_type/request_type.module';
 import { PersonModule } from './modules/person/person.module';
+import { EmailModule } from './modules/email/email.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PersonModule } from './modules/person/person.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    EmailModule,
     RequestModule,
     RequestTypeModule,
     PersonModule,
