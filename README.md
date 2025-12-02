@@ -14,7 +14,7 @@ A continuacion encontraras los requisitos previos y el paso a paso para poder ej
 
 ---
 
-## 🧰 Requisitos Previos
+## Requisitos Previos
 
 Asegúrate de tener instalado:
 
