@@ -28,7 +28,7 @@ docker compose version
 
 ---
 
-## 📥 Instalación
+## Instalación
 
 ### **Clonar el repositorio**
 
