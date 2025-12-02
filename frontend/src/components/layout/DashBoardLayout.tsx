@@ -80,18 +80,6 @@ const DashBoardLayout = ({
 
             {isAdmin && (
               <div className="space-y-2">
-                {onCreateRequest && (
-                  <button
-                    type="button"
-                    onClick={onCreateRequest}
-                    className="flex w-full items-center gap-2 rounded-xl bg-violet-500 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-violet-600 transition"
-                  >
-                    <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-violet-600/70 text-xs">
-                      +
-                    </span>
-                    Crear solicitud
-                  </button>
-                )}
 
                 {onCreateType && (
                   <button
